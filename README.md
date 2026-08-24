@@ -1,22 +1,22 @@
 Smart File Organizer
 
-A modern desktop application built with Python that automatically organizes files into categories based on their file extensions.
+A modern Python desktop application that automatically organizes files into categories based on their file extensions.
 
-Smart File Organizer started as a simple Python file-organizing script and was developed into a complete desktop application with a professional GUI, preview mode, undo support, JSON-based settings, logging, and optional automatic folder monitoring.
+Smart File Organizer started as a simple Python file-organizing script and was developed into a practical desktop application with a professional GUI, preview mode, undo support, customizable JSON-based settings, logging, and optional automatic folder monitoring.
 
 ✨ Features
 
 📁 Select any folder and organize its files
 
-👀 Preview where files will be moved before organizing
+👀 Preview file movements before organizing
 
 ⚡ One-click manual organization
 
-🤖 Optional Auto Organize mode for newly created files
+🤖 Optional Auto Organize for newly created files
 
 ↩️ Undo the last organization operation
 
-🔧 Customize file-extension rules through the Settings UI
+🔧 Customize file-extension rules from Settings
 
 📊 Progress bar and file statistics
 
@@ -24,17 +24,17 @@ Smart File Organizer started as a simple Python file-organizing script and was d
 
 📦 Unknown file types are placed in Others
 
-📝 Application logging with app.log
+📝 Application logging
 
 💾 Organization history for Undo
 
 🌙 Dark/light mode
 
-🖥️ Standalone Windows .exe available through releases
+🖥️ Windows executable available through GitHub Releases
 
 🗂️ Supported Categories
 
-The default configuration includes categories such as:
+The default configuration includes:
 
 Documents
 
@@ -56,36 +56,46 @@ Fonts
 
 Others
 
-File-extension rules can be customized from the application's Settings.
+File-extension rules can be customized from the application's Settings screen.
 
 🖥️ Screenshots
 
-Add your application screenshots here.
+Screenshots will be added here to demonstrate the application's dashboard, preview screen, and settings.
 
-Example:
+Recommended structure:
 
 screenshots/
 ├── dashboard.png
 ├── preview.png
 └── settings.png
 
-Then add them to this section:
+Then add screenshots like:
 
-![Smart File Organizer](screenshots/dashboard.png)
+![Smart File Organizer Dashboard](screenshots/dashboard.png)
 
-🚀 Download and Run
+🚀 Download
 
-Option 1 — Windows EXE
+Windows
 
-Download the latest SmartFileOrganizer.exe from the project's GitHub Releases.
+Download the latest release from:
 
-Place settings.json in the same directory as the executable if your release package includes it separately.
+GitHub Releases:
+https://github.com/hardik0108/SmartFileOrganizer/releases
 
-Option 2 — Run from Source
+The release package contains:
+
+SmartFileOrganizer.exe
+settings.json
+
+Keep settings.json in the same folder as SmartFileOrganizer.exe.
+
+Always test the application on a test folder before organizing important files.
+
+💻 Run from Source
 
 Clone the repository:
 
-git clone https://github.com/hardik0108/file-organizer
+git clone https://github.com/hardik0108/SmartFileOrganizer.git
 cd SmartFileOrganizer
 
 Create a virtual environment:
@@ -108,7 +118,7 @@ python app.py
 
 Python 3.10+
 
-Windows recommended for the packaged .exe
+Windows recommended for the packaged executable
 
 Python dependencies:
 
@@ -130,17 +140,16 @@ SmartFileOrganizer/
 ├── organizer.py            # File organization engine
 ├── settings.json           # File-extension configuration
 ├── requirements.txt        # Python dependencies
-├── history.json            # Organization history
-├── app.log                 # Application log
-├── SmartFileOrganizer.spec # PyInstaller build configuration
-│
-├── build/                  # PyInstaller build files
-└── dist/                   # Generated executable
-    └── SmartFileOrganizer.exe
+├── README.md               # Project documentation
+├── LICENSE                 # MIT License
+├── .gitignore              # Git ignored files
+└── SmartFileOrganizer.spec # PyInstaller build configuration
+
+Generated files such as build/, dist/, app.log, and history.json are excluded from the Git repository.
 
 ⚙️ How It Works
 
-The application separates the user interface from the file-organizing logic.
+The application separates the graphical interface from the file-organizing engine.
 
 User
   ↓
@@ -188,13 +197,13 @@ When enabled, the application watches the selected folder for new files.
 For example:
 
 Downloads/
-    photo.jpg
+└── photo.jpg
 
-After detection:
+After organization:
 
 Downloads/
-    Images/
-        photo.jpg
+└── Images/
+    └── photo.jpg
 
 The application waits for a newly created file to finish changing before moving it.
 
@@ -206,11 +215,11 @@ Selecting Undo Last attempts to restore the files to their original locations.
 
 🛡️ Safety
 
-Smart File Organizer is designed to avoid common file-management problems:
+Smart File Organizer is designed to reduce common file-management problems:
 
 Existing destination filenames are not overwritten.
 
-Duplicate names are automatically renamed, for example:
+Duplicate names are automatically renamed:
 photo.jpg, photo(1).jpg, photo(2).jpg
 
 Unknown extensions are placed in Others.
@@ -219,7 +228,9 @@ Preview mode lets users review planned moves before confirming.
 
 Auto Organize can be stopped by the user.
 
-Always test the application on a test folder before organizing important personal folders.
+File operations respect the permissions available to the current user.
+
+Important: Always test the application on a test folder before organizing important personal or system folders.
 
 🏗️ Build the Windows EXE
 
@@ -227,27 +238,29 @@ Install PyInstaller:
 
 python -m pip install pyinstaller
 
-Build:
+Build the application:
 
 python -m PyInstaller --clean --onefile --windowed --name SmartFileOrganizer app.py
 
-The executable will be created in:
+The executable will be created at:
 
 dist/SmartFileOrganizer.exe
 
-For the current JSON-based configuration, include settings.json with the released application.
+Because the application uses an external settings.json configuration file, include settings.json with the released executable.
 
 🐛 Known Limitations
 
-The current release targets desktop usage, especially Windows.
+The current release primarily targets Windows desktop usage.
 
-File operations depend on the permissions available to the user.
+File operations depend on available permissions.
 
 Very large folders may take longer to process.
 
-Auto Organize watches the selected folder and does not recursively monitor every subfolder.
+Auto Organize monitors the selected folder and does not recursively monitor every subfolder.
 
 Users should avoid organizing system-critical folders.
+
+The current release requires settings.json alongside the executable.
 
 🔮 Future Improvements
 
@@ -257,23 +270,25 @@ Scheduled organization
 
 More advanced file rules
 
-File-size/date-based organization
+File-size and date-based organization
 
 Multiple watched folders
 
-Better recovery and rollback
+Improved recovery and rollback
 
-Installer package
+Windows installer package
 
 Additional operating-system support
 
 More detailed activity history
 
+Automatic application updates
+
 🤝 Contributing
 
 Contributions, suggestions, and bug reports are welcome.
 
-If you find a bug:
+Reporting a bug
 
 Open an issue.
 
@@ -283,7 +298,7 @@ Include the steps needed to reproduce it.
 
 Include relevant error messages or screenshots.
 
-If you want to contribute code:
+Contributing code
 
 Fork the repository.
 
@@ -297,14 +312,16 @@ Open a pull request.
 
 📄 License
 
-Choose and add a license before publishing the project publicly.
+This project is licensed under the MIT License.
 
-For example, if you decide to use the MIT License, add a LICENSE file containing the MIT License terms.
+See the LICENSE file for details.
 
 👨‍💻 Author
 
 Hardik Gondaliya
 
-Built as a Python project to turn a file-organizing script into a practical desktop application.
+Built with Python as a practical desktop file-management application.
+
+GitHub: https://github.com/hardik0108
 
 ⭐ If you find Smart File Organizer useful, consider starring the repository.
